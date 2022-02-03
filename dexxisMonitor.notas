@@ -1,0 +1,27 @@
+receive req on /monitor
+query db
+
+
+
+
+Object MACHINE
+	hostname
+	type
+	ip addr
+	subnet
+
+Object MEASUREMENT
+	machine
+	reachable
+	service_status
+	latency
+
+Array GROUP_OF_MEASUREMENTS
+	id
+	measurement
+	timestamp
+
+Array GROUP_OF_MACHINES
+	id
+	machine
+

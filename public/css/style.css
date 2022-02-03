@@ -1,0 +1,19 @@
+body {
+  margin: 2%;
+}
+
+.bdg-status {
+  font-size: 1.8rem;
+}
+
+.server-detail {
+  cursor: default;
+}
+
+.server-detail-list {
+  display: none;
+}
+
+.ale-footer {
+  text-align: center;
+}
