@@ -1,27 +1,30 @@
-receive req on /monitor
-query db
+** TODO **
+	What to do with date in footer?
+	How to pass all the huge amount of data from db to view?
 
+** DATA STRUCTURES **
+	Object MACHINE
+		hostname
+		type
+		ip addr
+		subnet
 
+	Object MEASUREMENT
+		machine
+		reachable
+		service_status
+		latency
 
+	Array GROUP_OF_MEASUREMENTS
+		id
+		measurement
+		timestamp
 
-Object MACHINE
-	hostname
-	type
-	ip addr
-	subnet
+	Array GROUP_OF_MACHINES
+		id
+		machine
 
-Object MEASUREMENT
-	machine
-	reachable
-	service_status
-	latency
+** CUT SNIPPETS **
 
-Array GROUP_OF_MEASUREMENTS
-	id
-	measurement
-	timestamp
-
-Array GROUP_OF_MACHINES
-	id
-	machine
-
+var today = new Date();
+var serverDate_ = today.toLocaleDateString("en-US", timestampOptions) + " - " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();

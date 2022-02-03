@@ -51,13 +51,10 @@ function createTables(db) {
 /*
 * An array where each element is a server object with each row being a property
 */
-function runQuery(req, res, db, serverDate_) {
-
+function runQuery(req, res, db) {
     let retArray = [];
-
-    db.all(`
-        SELECT server_id, server_name, reachable, latency, cards_min FROM dx_servers WHERE server_id = ?;
-    `,1, (err, rows)=>{
+    db.all(`SELECT server_id, server_name, reachable, latency, cards_min FROM dx_servers WHERE server_id = ?;`,1, 
+    (err, rows)=>{
         rows.forEach(row =>{
             let iServer = {
                 iId: row.server_id,
@@ -67,11 +64,8 @@ function runQuery(req, res, db, serverDate_) {
                 iCardsMin: row.cards_min
             };
             retArray.push(iServer);
-            console.log(retArray);
         });
-        console.log(retArray);
         res.render('monitor', {
-            serverDate: serverDate_,
             serverId: retArray[0].iId,
             serverName: retArray[0].iName,
             serverReach: "a",
@@ -82,24 +76,19 @@ function runQuery(req, res, db, serverDate_) {
 }
 
 app.get('/monitor', (req, res)=>{
-    var today = new Date();
-    var serverDate_ = today.toLocaleDateString("en-US", timestampOptions) + " - " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    
-    runQuery(req, res, mydb, serverDate_);
-    
-    
-    
-
+    runQuery(req, res, mydb);
 })
 
 app.get('/stats', (req, res)=>{
-    var today = new Date();
-    var serverDate_ = today.toLocaleDateString("en-US", timestampOptions) + " - " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     res.render('stats', {
-        serverDate: serverDate_
     });
 })
 
+
+app.get('/settings', (req, res)=>{
+    res.render('settings',{
+    });
+})
 app.listen(3000, ()=>{
     console.log('Server now listening on port 3000.');
 })

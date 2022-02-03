@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-  //$(".server-detail-list").slideUp();
-
   // HIGHLIGHT MOUSEOVER LIST ELEMENT
   $(".server-list-item").mouseenter(function() {
     $(this).addClass("active");
