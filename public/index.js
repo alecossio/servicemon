@@ -20,4 +20,5 @@ $(document).ready(function() {
     $(this).siblings(".server-detail-list").slideToggle();
   });
 
+  
 });
